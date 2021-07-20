@@ -11,4 +11,12 @@ nodes:
       source_table: public.lineitem
       target_table: default.lineitem
     dependsOn: []
+  - name: HadoopAgg
+    type: transform
+    config:
+      target: v360hive
+      sql_file: sql/f_401_hadoopagg.sql
+      explain_only: false
+    dependsOn:
+      - PGtoHive
 config: {}
