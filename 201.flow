@@ -14,7 +14,7 @@ nodes:
   - name: CalculateOrderStats
     type: transform
     config:
-      target: hive
+      target: v360hive
       sql_file: sql/f_201_calculateorderstats.sql
       explain_only: false
     dependsOn:
