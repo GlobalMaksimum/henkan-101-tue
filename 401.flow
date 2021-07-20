@@ -27,4 +27,17 @@ nodes:
       explain_only: false
     dependsOn:
       - HadoopAgg
+  - name: LoadIntoVfromHadoop
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_401_loadintovfromhadoop.json
+      source: hive
+      target: veon10
+      source_table: default.lineitem_summ
+      explain_only: false
+      empty_source_check: true
+      target_table: public.lineitem_summ
+    dependsOn:
+      - TrucateTargetOnVertica
 config: {}
