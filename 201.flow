@@ -1,0 +1,43 @@
+nodes:
+  - name: PGtoHive
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_201_pgtohive.json
+      source: PGLab
+      target: hive
+      source_table: public.lineitem
+      explain_only: false
+      empty_source_check: true
+      target_table: default.lineitem
+    dependsOn: []
+  - name: CalculateOrderStats
+    type: transform
+    config:
+      target: hive
+      sql_file: sql/f_201_calculateorderstats.sql
+      explain_only: false
+    dependsOn:
+      - PGtoHive
+  - name: LoadSummaryFromHive
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_201_loadsummaryfromhive.json
+      source: hive
+      target: veon10
+      explain_only: false
+      empty_source_check: true
+      source_table: default.lineitem_summ
+      target_table: public.lineitem_summ
+    dependsOn:
+      - TruncateVertica
+  - name: TruncateVertica
+    type: transform
+    config:
+      target: TruncateVerticaTarget
+      sql_file: sql/f_201_truncatevertica.sql
+      explain_only: false
+    dependsOn:
+      - CalculateOrderStats
+config: {}
