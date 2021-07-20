@@ -19,4 +19,12 @@ nodes:
       explain_only: false
     dependsOn:
       - PGtoHive
+  - name: TrucateTargetOnVertica
+    type: transform
+    config:
+      target: veon10
+      sql_file: sql/f_401_trucatetargetonvertica.sql
+      explain_only: false
+    dependsOn:
+      - HadoopAgg
 config: {}
