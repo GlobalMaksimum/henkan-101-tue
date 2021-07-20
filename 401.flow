@@ -1,0 +1,14 @@
+nodes:
+  - name: PGtoHive
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_401_pgtohive.json
+      source: PGLab
+      target: hive
+      explain_only: false
+      empty_source_check: true
+      source_table: public.lineitem
+      target_table: default.lineitem
+    dependsOn: []
+config: {}
