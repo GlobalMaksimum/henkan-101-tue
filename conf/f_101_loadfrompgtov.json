@@ -65,6 +65,5 @@
       "target_column": "L_COMMENT"
     }
   ],
-  "fetch_size": 600,
-  "truncate_load": true
+  "fetch_size": 600
 }
