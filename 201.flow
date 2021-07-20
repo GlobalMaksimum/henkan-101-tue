@@ -35,7 +35,7 @@ nodes:
   - name: TruncateVertica
     type: transform
     config:
-      target: TruncateVerticaTarget
+      target: vertica
       sql_file: sql/f_201_truncatevertica.sql
       explain_only: false
     dependsOn:
