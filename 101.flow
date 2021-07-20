@@ -1,0 +1,14 @@
+nodes:
+  - name: LoadFromPGtoV
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_101_loadfrompgtov.json
+      source: PGLab
+      target: veon10
+      source_table: public.lineitem
+      explain_only: false
+      empty_source_check: true
+      target_table: public.lineitem_pg
+    dependsOn: []
+config: {}
