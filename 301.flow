@@ -1,0 +1,26 @@
+nodes:
+  - name: SupplierDim
+    type: scd
+    config:
+      subtype: spark
+      conf: conf/f_301_supplierdim.json
+      target: hive
+      explain_only: false
+      source_table: default.supplier
+      change_tolerance: 10
+      target_table: default.dim_supplier
+    dependsOn:
+      - LoadSupplierIntoHive
+  - name: LoadSupplierIntoHive
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_301_loadsupplierintohive.json
+      source: PGLab
+      target: hive
+      explain_only: false
+      empty_source_check: true
+      source_table: public.supplier
+      target_table: default.supplier
+    dependsOn: []
+config: {}
