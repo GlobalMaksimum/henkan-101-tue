@@ -1,0 +1,47 @@
+nodes:
+  - name: TransferSuppFromPG
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_supp_transfersuppfrompg.json
+      source: PGLab
+      target: hive
+      source_table: public.supplier
+      explain_only: false
+      empty_source_check: true
+      target_table: default.supplier
+    dependsOn: []
+  - name: DoSCDOnHadoop
+    type: scd
+    config:
+      subtype: spark
+      conf: conf/f_supp_doscdonhadoop.json
+      target: hive
+      explain_only: false
+      source_table: default.supplier
+      change_tolerance: 10
+      target_table: default.dim_supplier
+    dependsOn:
+      - TransferSuppFromPG
+  - name: TruncateSuppOnV
+    type: transform
+    config:
+      target: veon10
+      sql_file: sql/f_supp_truncatesupponv.sql
+      explain_only: false
+    dependsOn:
+      - DoSCDOnHadoop
+  - name: LoadIntoVerticaSupp
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_supp_loadintoverticasupp.json
+      source: hive
+      target: veon10
+      explain_only: false
+      empty_source_check: true
+      source_table: default.dim_supplier
+      target_table: public.dim_supplier
+    dependsOn:
+      - TruncateSuppOnV
+config: {}
