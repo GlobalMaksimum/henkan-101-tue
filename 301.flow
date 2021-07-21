@@ -23,4 +23,17 @@ nodes:
       source_table: public.supplier
       target_table: default.supplier
     dependsOn: []
+  - name: TransferToVertica
+    type: transfer
+    config:
+      subtype: spark
+      conf: conf/f_301_transfertovertica.json
+      source: hive
+      target: veon10
+      source_table: default.dim_supplier
+      explain_only: false
+      empty_source_check: true
+      target_table: public.dim_supplier
+    dependsOn:
+      - SupplierDim
 config: {}
