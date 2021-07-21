@@ -1,0 +1,1 @@
+truncate table DIM_SUPPLIER;
