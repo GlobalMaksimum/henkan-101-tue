@@ -1,0 +1,17 @@
+nodes:
+  - name: MaxValueOnTarget
+    type: parameter
+    config:
+      param_name: maxval
+      target: veon10
+      sql_file: sql/f_601_maxvalueontarget.sql
+    dependsOn: []
+  - name: VerticaToVertica
+    type: transform
+    config:
+      target: VerticaToVerticaTarget
+      sql_file: sql/f_601_verticatovertica.sql
+      explain_only: false
+    dependsOn:
+      - MaxValueOnTarget
+config: {}

@@ -1,0 +1,1 @@
+select nvl(max(i),0) from t2;
