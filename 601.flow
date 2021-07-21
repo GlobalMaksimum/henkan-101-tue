@@ -9,7 +9,7 @@ nodes:
   - name: VerticaToVertica
     type: transform
     config:
-      target: VerticaToVerticaTarget
+      target: veon10
       sql_file: sql/f_601_verticatovertica.sql
       explain_only: false
     dependsOn:
