@@ -35,12 +35,12 @@ nodes:
       empty_source_check: true
       target_table: public.dim_supplier
     dependsOn:
-      - Truncate dimension table
-  - name: Truncate dimension table
+      - TruncateVerticaDimTable
+  - name: TruncateVerticaDimTable
     type: transform
     config:
       target: veon10
-      sql_file: sql/f_301_truncate dimension table.sql
+      sql_file: sql/f_301_truncateverticadimtable.sql
       explain_only: false
     dependsOn:
       - SupplierDim
