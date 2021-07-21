@@ -2,7 +2,7 @@ nodes:
   - name: TwithTemplate
     type: transform
     config:
-      target: TwithTemplateTarget
+      target: veon10
       sql_file: sql/f_501_twithtemplate.sql
       explain_only: false
     dependsOn: []
