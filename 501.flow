@@ -1,0 +1,9 @@
+nodes:
+  - name: TwithTemplate
+    type: transform
+    config:
+      target: TwithTemplateTarget
+      sql_file: sql/f_501_twithtemplate.sql
+      explain_only: false
+    dependsOn: []
+config: {}
